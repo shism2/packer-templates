@@ -67,3 +67,20 @@ VAGRANT_CLOUD_USER="<your account>"
 ```
 
 The box name (`photon4-<installation>`) and version (`YYYYMM.DD.0`) will be generated automatically.
+
+
+## Issues
+
+### Partitioning Disk
+
+On occassion, the kickstart script fails to partition the disk as shown below.
+
+![Packer Partitioning Failure](https://raw.githubusercontent.com/timothybrush/packer-templates/main/img/packer_partition_failure.png)
+
+This can be recovered from by running the follow command and then exiting the terminal.
+
+```shell
+umount /mnt/media
+exit
+```
+
