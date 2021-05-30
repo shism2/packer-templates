@@ -1,0 +1,10 @@
+# Defaults are listed.
+#installation = "minimal"
+#iso_sha1     = "sha1:2221ab214b517a15c60bd5e2aacdb9388581bcd9"
+#iso_url      = "https://packages.vmware.com/photon/4.0/GA/iso/photon-4.0-1526e30ba.iso"
+#memory       = "2048"
+#product      = "photon"
+#storage      = "20480"
+#vcpu         = "2"
+#version      = "4"
+#vm_version   = "15"

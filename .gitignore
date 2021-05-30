@@ -1,0 +1,13 @@
+# macOS specific
+.DS_Store*
+
+# Build artifacts
+*.box
+*.vmwarevm
+*.log
+manifest.json
+
+# Test artifacts
+tmp/
+.vagrant/
+
