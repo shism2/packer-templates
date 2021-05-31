@@ -5,7 +5,7 @@
 # ----------------
 if [ -x /bin/rpm-ostree ]
 then
-  #/bin/rpm-ostree upgrade  # breaks
+  /bin/rpm-ostree update
   /bin/rpm-ostree status
 else
   /bin/echo "Updating packages"
@@ -17,9 +17,14 @@ fi
 # --------------------
 # Tweak grub2 settings
 # --------------------
-/bin/sed -i 's/set gfxmode=.*/set gfxmode="1024x768"/' /boot/grub2/grub.cfg
-/bin/sed -i '/linux/ s/$/ net.ifnames=0/' /boot/grub2/grub.cfg
-/bin/echo 'GRUB_CMDLINE_LINUX=\"net.ifnames=0\"' >> /etc/default/grub
+if [ -x /bin/rpm-ostree ]
+then
+  # commands below will break ostree host
+else
+  /bin/sed -i 's/set gfxmode=.*/set gfxmode="1024x768"/' /boot/grub2/grub.cfg
+  /bin/sed -i '/linux/ s/$/ net.ifnames=0/' /boot/grub2/grub.cfg
+  /bin/echo 'GRUB_CMDLINE_LINUX=\"net.ifnames=0\"' >> /etc/default/grub
+fi
 
 # ----------------
 # Add vagrant user
