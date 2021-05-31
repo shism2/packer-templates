@@ -3,7 +3,7 @@
 # ----------------
 # Upgrade packages
 # ----------------
-if [ -x /bin/rpm-ostree ]
+if [[ -x /bin/rpm-ostree ]]
 then
   /bin/rpm-ostree update
   /bin/rpm-ostree status
@@ -17,10 +17,8 @@ fi
 # --------------------
 # Tweak grub2 settings
 # --------------------
-if [ -x /bin/rpm-ostree ]
+if [[ ! -x /bin/rpm-ostree ]]
 then
-  # commands below will break ostree host
-else
   /bin/sed -i 's/set gfxmode=.*/set gfxmode="1024x768"/' /boot/grub2/grub.cfg
   /bin/sed -i '/linux/ s/$/ net.ifnames=0/' /boot/grub2/grub.cfg
   /bin/echo 'GRUB_CMDLINE_LINUX=\"net.ifnames=0\"' >> /etc/default/grub
@@ -36,7 +34,7 @@ HOME_DIR="/home/vagrant"
 /sbin/groupadd vagrant
 
 # Set up a vagrant user and add the insecure key for User to login
-if [ -x /bin/rpm-ostree ]
+if [[ -x /bin/rpm-ostree ]]
 then
   /sbin/useradd -G vagrant -m -p '$1$vagrant$I4pvEJo5vdKqeokP0vb9t/' vagrant
 else
